@@ -1,0 +1,50 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="href" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+          <option value="N802" />
+          <option value="N801" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyShadowingBuiltinsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredNames">
+        <list>
+          <option value="id" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="int.get" />
+          <option value="int.find" />
+          <option value="int.get_text" />
+          <option value="django.contrib.auth.User" />
+          <option value="django.contrib.auth.UserCreationForm" />
+          <option value="django.contrib.auth.AuthenticationForm" />
+          <option value="cloth.models.STATUS" />
+          <option value="cloth.views.tags__name__iexact" />
+          <option value="product.models.Category.DoesNotExist" />
+          <option value="product.models.Review.DoesNotExist" />
+          <option value="product.models.Product.DoesNotExist" />
+          <option value="movie.models.Movie.DoesNotExists" />
+          <option value="movie.models.Movie.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
