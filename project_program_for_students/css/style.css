@@ -3,6 +3,9 @@
 .header {
     height: 80px;
     background: #2c2d2f;
+    background-image: url("https://www.bmw.kg/content/dam/bmw/common/images/logo-icons/BMW/BMW_White_Logo.svg.asset.1670245093434.svg"), url("https://www.bmw.kg/content/dam/bmw/common/images/logo-icons/BMW/BMW_Grey-Colour_RGB.SVG.asset.1697707041685.SVG");
+    background-repeat: no-repeat;
+    background-size: contain;
     display: flex;
     align-items: center;
     width: 100%;
@@ -56,6 +59,7 @@
 .main_block {
     padding: 100px 0;
     background: black;
+    /*background-image: url("");*/
 }
 
 /* BUTTONS COLOR PICKER */
@@ -226,7 +230,7 @@
 
 /*-------BOTTLE-------*/
 
-.botlle {
+.bottle {
     background: black;
     padding: 100px 0;
 }
@@ -424,4 +428,44 @@
     }
     100% {
     }
+}
+
+/* AUTO BLOCK */
+.autoBlock {
+    width: 250px;
+    height: 280px;
+    padding: 10px;
+    border: 4px solid;
+    border-radius: 15px;
+    text-align: start;
+    box-sizing: border-box;
+    font-family: "Dubai", sans-serif;
+}
+
+.autoPhoto {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.autoPhoto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wrap {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+.autoBlock p,
+.autoBlock span {
+    margin: 8px 0;
 }

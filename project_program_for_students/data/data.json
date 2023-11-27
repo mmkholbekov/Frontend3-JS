@@ -1,0 +1,8 @@
+[
+  {
+    "name": "John Doe",
+    "age": 25,
+    "city": "Example City",
+    "skills": ["JavaScript", "HTML", "CSS"]
+  }
+]

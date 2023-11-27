@@ -21,8 +21,8 @@ modal.onclick = (event) => {
     }
 }
 
-//  Вызывать модальное окно по скролу до конца страницы
 
+//  Вызывать модальное окно по скролу до конца страницы
 const scrollHandler = () => {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         openModal()

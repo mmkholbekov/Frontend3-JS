@@ -75,3 +75,52 @@ prev.onclick = () => {
 }
 
 autoSlider(index)
+
+
+// GET Запрос CARS
+const wrapperAutos = document.querySelector('.wrap')
+
+const getCards = () => {
+    const request = new XMLHttpRequest()
+    request.open('GET', 'data/cars.json')
+    request.setRequestHeader('Content-type', 'application/json')
+    request.send();
+
+    request.onload = () => {
+        const cars = JSON.parse(request.response)
+
+        cars.forEach((auto) => {
+            const autoBlock = document.createElement('div')
+            autoBlock.classList.add('autoBlock')
+
+            autoBlock.innerHTML = `
+                <div class="autoPhoto">
+                    <img src="${auto.photo}" alt="${auto.model}">
+                </div>
+                <p>Model: ${auto.model}</p>
+                <p>Generation: ${auto.generation}</p>
+                <p>Car body: ${auto.body}</p>
+                <p>Price: ${auto.price}</p>
+            `
+
+            wrapperAutos.append(autoBlock)
+        })
+    }
+}
+getCards();
+
+// XMLHttpRequest запрос на JSON файл
+const request = new XMLHttpRequest()
+request.open('GET', 'data/data.json')
+request.setRequestHeader('Content-type', 'application/json')
+request.send()
+
+request.onload = function () {
+  if (request.status === 200) {
+    const jsonData = JSON.parse(request.responseText)
+
+    console.log(jsonData)
+  } else {
+    console.error('Ошибка при загрузке данных:', request.statusText)
+  }
+};
