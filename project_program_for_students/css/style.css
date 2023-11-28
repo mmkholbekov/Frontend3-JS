@@ -3,9 +3,6 @@
 .header {
     height: 80px;
     background: #2c2d2f;
-    background-image: url("https://www.bmw.kg/content/dam/bmw/common/images/logo-icons/BMW/BMW_White_Logo.svg.asset.1670245093434.svg"), url("https://www.bmw.kg/content/dam/bmw/common/images/logo-icons/BMW/BMW_Grey-Colour_RGB.SVG.asset.1697707041685.SVG");
-    background-repeat: no-repeat;
-    background-size: contain;
     display: flex;
     align-items: center;
     width: 100%;
@@ -26,16 +23,14 @@
 .logotype {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    height: 60px;
-    width: fit-content;
-    background: var(--orange);
     padding: 8px;
-    color: white;
     border-radius: 5px;
     cursor: pointer;
 }
+.logotype img {
+    width: 60px;
+}
+
 
 /* HEADER MENU */
 
@@ -57,9 +52,10 @@
 /* MAIN BLOCK */
 
 .main_block {
-    padding: 100px 0;
-    background: black;
-    /*background-image: url("");*/
+    padding: 262px 0;
+    background-image: url("https://images.netdirector.co.uk/gforces-auto/image/upload/q_auto,c_fill,f_auto,fl_lossy,w_1600,h_900/auto-client/def63ca90b33eee6a9e419d8a620981d/1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* BUTTONS COLOR PICKER */
@@ -437,17 +433,16 @@
     padding: 10px;
     border: 4px solid;
     border-radius: 15px;
-    text-align: start;
+    text-align: center;
     box-sizing: border-box;
     font-family: "Dubai", sans-serif;
 }
 
 .autoPhoto {
-    width: 100px;
+    width: 200px;
     height: 100px;
     margin: 0 auto;
     border-radius: 50%;
-    overflow: hidden;
 }
 
 .autoPhoto img {
@@ -457,12 +452,15 @@
 }
 
 .wrap {
+    height: 680px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     padding-top: 100px;
     padding-bottom: 50px;
+    background-image: url("https://www.bmw-m.com/content/dam/bmw/marketBMW_M/common/topics/Elektrifizierung/bmw-m-electrified-stage-front-01.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1697198652480.jpg");
+    background-repeat: no-repeat;
 }
 
 .autoBlock p,

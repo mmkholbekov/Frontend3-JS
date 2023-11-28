@@ -36,3 +36,38 @@ setTimeout(() => {
     openModal()
     window.removeEventListener('scroll', scrollHandler)
 }, 10000)
+
+
+
+// POST DATA FECH ЗАПРОС
+const postData = (url, data) => {
+    return fetch(url, {
+        method: "POST",
+        headers: { 'Content-type': 'application/json'},
+        body: data
+    })
+    .then(response => response.json())
+    .then(data => console.log('POST response:', data))
+}
+
+const bindPostData = (form) => {
+    form.onsubmit = (event) => {
+        event.preventDefault()
+
+        const formData = new FormData(form)
+        const obj = {}
+        formData.forEach((item, index) => {
+            obj[index] = item
+        });
+        const json = JSON.stringify(obj)
+
+        postData('server.php', json)
+    }
+}
+
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => response.json())
+    .then(data => console.log('GET response:', data))
+
+
