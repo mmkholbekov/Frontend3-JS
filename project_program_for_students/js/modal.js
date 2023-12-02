@@ -39,15 +39,20 @@ setTimeout(() => {
 
 
 
-// POST DATA FECH ЗАПРОС
-const postData = (url, data) => {
-    return fetch(url, {
-        method: "POST",
-        headers: { 'Content-type': 'application/json'},
-        body: data
-    })
-    .then(response => response.json())
-    .then(data => console.log('POST response:', data))
+// POST DATA FETCH ЗАПРОС
+const postData = async (url, data) => {
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: data,
+        })
+
+        const responseData = await response.json()
+        console.log('Ответ на POST запрос:', responseData)
+    } catch (error) {
+        console.error('Ошибка при выполнении POST запроса:', error)
+    }
 }
 
 const bindPostData = (form) => {
@@ -65,9 +70,18 @@ const bindPostData = (form) => {
     }
 }
 
+const getData = async (url) => {
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+        console.log('Ответ на GET запрос:', data)
+    } catch (error) {
+        console.error('Ошибка при выполнении GET запроса:', error)
+    }
+};
 
-fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.json())
-    .then(data => console.log('GET response:', data))
+// Вызывать GET запрос
+getData('https://jsonplaceholder.typicode.com/posts')
+
 
 

@@ -6,15 +6,19 @@ const phoneResult = document.querySelector('#phone_result')
 
 const regExp = /^\+996 [2597]\d{2} \d{2}-\d{2}-\d{2}$/
 
-phoneButton.addEventListener('click',() => {
-    if (regExp.test(phoneInput.value)) {
-        phoneResult.innerHTML = 'OK'
-        phoneResult.style.color = 'green'
-    } else {
-        phoneResult.innerHTML = 'NOT OK'
-        phoneResult.style.color = 'red'
+phoneButton.addEventListener('click', async () => {
+    try {
+        if (regExp.test(phoneInput.value)) {
+            phoneResult.innerHTML = 'OK'
+            phoneResult.style.color = 'green'
+        } else {
+            phoneResult.innerHTML = 'NOT OK'
+            phoneResult.style.color = 'red'
+        }
+    } catch (error) {
+        console.error('Ошибка при проверке номера телефона:', error)
     }
-})
+});
 
 // TAB SLIDER
 
@@ -64,15 +68,12 @@ const somInput = document.querySelector('#som')
 const usdInput = document.querySelector('#usd')
 const eurInput = document.querySelector('#eur')
 
-const converter = (element, targetElement1, targetElement2, targetType) => {
-    element.oninput = () => {
-        const request = new XMLHttpRequest()
-        request.open("GET", "../data/converter.json")
-        request.setRequestHeader('Content-type', 'application/json')
-        request.send()
+const converter = async (element, targetElement1, targetElement2, targetType) => {
+    element.oninput = async () => {
+        try {
+            const request = await fetch('../data/converter.json')
+            const changes = await request.json()
 
-        request.onload = () => {
-            const changes = JSON.parse(request.response)
             switch (targetType) {
                 case 'som':
                     targetElement1.value = (element.value / changes.usd).toFixed(2)
@@ -85,16 +86,21 @@ const converter = (element, targetElement1, targetElement2, targetType) => {
                 case 'eur':
                     targetElement1.value = (element.value * changes.eur).toFixed(2)
                     targetElement2.value = (element.value * changes.eur / changes.usd).toFixed(2)
+                    break
                 default:
                     break
             }
+
             element.value === '' && (targetElement1.value = targetElement2.value = '')
+        } catch (error) {
+            console.error('Ошибка при конвертации валюты:', error)
         }
     }
 }
-converter(somInput, usdInput, eurInput, 'som');
-converter(usdInput, somInput, eurInput, 'usd');
-converter(eurInput, somInput, usdInput, 'eur');
+
+converter(somInput, usdInput, eurInput, 'som')
+converter(usdInput, somInput, eurInput, 'usd')
+converter(eurInput, somInput, usdInput, 'eur')
 
 // CARD SWITCHER
 
@@ -104,19 +110,21 @@ btnNext = document.querySelector('#btn-next')
 
 let count = 1
 
-function updateCard() {
-    fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
-        .then(response => response.json())
-        .then(data => {
-            card.innerHTML = `
-                <p>${data.title}</p>
-                <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
-                <span>${data.id}</span>
-            `
-        })
+const updateCard = async () => {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
+        const data = await response.json()
+        card.innerHTML = `
+            <p>${data.title}</p>
+            <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
+            <span>${data.id}</span>
+        `
+    } catch (error) {
+        console.error('Ошибка при обновлении карточки:', error)
+    }
 }
 
-function changeCard(direction) {
+const changeCard = (direction) => {
     if (direction === 'next') {
         count = (count % 200) + 1
     } else if (direction === 'prev') {
@@ -135,3 +143,25 @@ btnPrev.onclick = () => {
 }
 
 updateCard()
+
+// SEARCH WEATHER
+
+const citySearchInput = document.querySelector('.cityName'),
+    city = document.querySelector('.city'),
+    temp = document.querySelector('.temp')
+
+const WEATHER_API = 'http://api.openweathermap.org/data/2.5/weather'
+const API_KEY = 'e417df62e04d3b1b111abeab19cea714'
+
+// Optional changing - .?
+citySearchInput.oninput = async (event) => {
+    try {
+        const response = await fetch(`${WEATHER_API}?q=${event.target.value}&appid=${API_KEY}`)
+        const data = await response.json()
+
+        city.innerHTML = data?.name ? data?.name : 'Город не найден...'
+        temp.innerHTML = data?.main?.temp ? Math.round(data?.main?.temp - 273) + '&deg;C' : '...'
+    } catch (error) {
+        console.error('Ошибка при поиске погоды:', error)
+    }
+}
